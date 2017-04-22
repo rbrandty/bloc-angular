@@ -46,6 +46,10 @@
             song.playing = true;
         }
 
+        var stopSong = function(song){
+					currentBuzzObject.stop();
+					song.playing = null;
+				}
         /**
 * @function SongPlayer.play
 * @desc Plays currentBuzzObject if currentBuzzObject is not the same as song object. Also plays currentBuzzObject if currentBuzzObject is the same as song object and currentBuzzObject is paused, and sets property of the song object to true
@@ -61,6 +65,11 @@
                     currentBuzzObject.play();
                     song.playing = true;
                 }
+            var stopSong = function(song){
+					currentBuzzObject.stop();
+					song.playing = null;
+				}
+ 
             }  
         };
 
@@ -80,8 +89,20 @@
      currentSongIndex--;
      
      if (currentSongIndex < 0) {
-         currentBuzzObject.stop();
-         SongPlayer.currentSong.playing = null;
+          stopSong(SongPlayer.currentSong);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+			
+				SongPlayer.next = function () {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+
+            if (currentSongIndex === currentAlbum.songs.length) {
+                stopSong(SongPlayer.currentSong);
      } else {
          var song = currentAlbum.songs[currentSongIndex];
          setSong(song);
