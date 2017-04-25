@@ -21,7 +21,6 @@
       link: function(scope, element, attributes) {
         scope.value = 0;
         scope.max = 100;
-      }
 
         var seekBar = $(element);
 
@@ -76,9 +75,9 @@
             scope.onChange({value: newValue});
           }
         };
-//Jesse - I think these brackets are unmatched somehow :(
+      }
     };
-  }
+  };
 
   angular
   .module('blocJams')
